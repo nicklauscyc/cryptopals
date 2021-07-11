@@ -1,6 +1,16 @@
 #!/bin/python3
 
-# Convert hex to base64
+# Convert hex to base64. Two methods are shown, fastHexToBase64() and
+# hexToBase64().
+
+# fastHexToBase64():
+#
+#     The fast method of converting from hex to base 64
+def fastHexToBase64(s):
+
+    import base64
+    byteArray = bytearray.fromhex(s)
+    return base64.b64encode(byteArray)
 
 # hexToBitArray():
 #
@@ -196,24 +206,18 @@ def bitArrayToBase64(arr):
             raise ValueError("Should not come here")
     return s
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# hexToBase64():
+#
+#     Uses the two helpers to convert from hex to base 64
+def hexToBase64(s):
+    arr = hexToBitArray(s)
+    return bitArrayToBase64(arr)
 
 if __name__ == "__main__":
-    a=hexToBitArray("49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d")
-    s=bitArrayToBase64(a)
+    s=hexToBase64("49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d")
+    s2 = fastHexToBase64( "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d")
+    print(s)
+    print(s2)
     if s == "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t":
         print("All tests passed!")
 
