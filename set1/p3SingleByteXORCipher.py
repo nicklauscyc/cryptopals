@@ -41,7 +41,6 @@ def getFrequency(hexString):
     byteArray = bytearray.fromhex(hexString)
     frequency = {}
     for byte in byteArray:
-        print(byte.to_bytes(1,'big'))
         if byte in frequency:
             frequency[byte] += 1
         else:
@@ -121,7 +120,6 @@ def decodeString(s, minCipher):
         decoded = byte ^ minCipher
         result += chr(decoded)
     return result
-
 
 if __name__ == "__main__":
     s = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"
